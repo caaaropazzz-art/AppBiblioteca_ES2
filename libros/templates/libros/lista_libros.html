@@ -25,6 +25,7 @@
                 <th>ISBN</th>
                 <th>Fecha de publicación</th>
                 <th>Disponible</th>
+                <th>Acciones</th>
             </tr>
         </thead>
 
@@ -37,6 +38,9 @@
                 <td>{{ libro.isbn }}</td>
                 <td>{{ libro.fecha_publicacion }}</td>
                 <td>{{ libro.disponible }}</td>
+                <td>
+                    <a href="{% url 'editar_libro' libro.id %}">Editar</a>
+                </td>
             </tr>
 
             {% empty %}

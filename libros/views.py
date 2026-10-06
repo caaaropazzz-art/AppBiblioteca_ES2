@@ -25,3 +25,20 @@ def crear_libro(request):
         return redirect('lista_libros')
 
     return render(request, 'libros/crear_libro.html')
+
+def editar_libro(request, id):
+
+    libro = Libro.objects.get(id=id)
+
+    if request.method == 'POST':
+        libro.titulo = request.POST['titulo']
+        libro.autor = request.POST['autor']
+        libro.isbn = request.POST['isbn']
+        libro.fecha_publicacion = request.POST['fecha_publicacion']
+        libro.disponible = 'disponible' in request.POST
+
+        libro.save()
+
+        return redirect('lista_libros')
+
+    return render(request, 'libros/editar_libro.html', {'libro': libro})
