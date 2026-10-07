@@ -1,57 +1,490 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Biblioteca</title>
+
+    <style>
+
+        /* CONFIGURACIÓN GENERAL */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #252525;
+        }
+
+
+        /* BARRA DE NAVEGACIÓN */
+
+        nav {
+            background-color: #1c1c1c;
+            border-bottom: 5px solid #d71920;
+        }
+
+        .navbar {
+            width: 80%;
+            max-width: 1200px;
+            min-height: 70px;
+            margin: auto;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #d71920;
+        }
+
+        .menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .menu a {
+            color: #dddddd;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            color: #ffffff;
+        }
+
+
+        /* CONTENIDO PRINCIPAL */
+
+        main {
+            min-height: calc(100vh - 150px);
+        }
+
+        .contenedor {
+            width: 80%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .encabezado {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 38px;
+            margin-bottom: 8px;
+            color: #1c1c1c;
+        }
+
+        .subtitulo {
+            color: #666666;
+            margin-top: 0;
+        }
+
+
+        /* BOTÓN REGISTRAR */
+
+        .acciones {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .boton {
+            display: inline-block;
+            padding: 11px 18px;
+
+            background-color: #d71920;
+            color: white;
+
+            text-decoration: none;
+            font-weight: bold;
+
+            border-radius: 6px;
+
+            transition: 0.2s;
+        }
+
+        .boton:hover {
+            background-color: #aa1015;
+            transform: translateY(-2px);
+        }
+
+
+        /* GRID */
+
+        .libros {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 25px;
+        }
+
+
+        /* TARJETAS */
+
+        .libro {
+            background-color: white;
+
+            padding: 22px;
+
+            border-radius: 10px;
+
+            border-top: 4px solid #d71920;
+
+            box-shadow: 0 3px 12px
+                rgba(0, 0, 0, 0.08);
+
+            transition: 0.2s;
+        }
+
+        .libro:hover {
+            transform: translateY(-3px);
+
+            box-shadow: 0 6px 18px
+                rgba(0, 0, 0, 0.12);
+        }
+
+        .libro h2 {
+            font-family: Georgia, "Times New Roman", serif;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #222222;
+        }
+
+        .libro p {
+            color: #555555;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+
+
+        /* ESTADO DEL LIBRO */
+
+        .disponible {
+            color: #198754;
+            font-weight: bold;
+        }
+
+        .no-disponible {
+            color: #777777;
+            font-weight: bold;
+        }
+
+
+        /* BOTONES DE CADA LIBRO */
+
+        .botones {
+            margin-top: 20px;
+            padding-top: 15px;
+
+            border-top: 1px solid #eeeeee;
+
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .botones a {
+            padding: 8px 12px;
+
+            text-decoration: none;
+
+            border-radius: 5px;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .editar {
+            background-color: #333333;
+            color: white;
+        }
+
+        .editar:hover {
+            background-color: #555555;
+        }
+
+        .eliminar {
+            background-color: #d71920;
+            color: white;
+        }
+
+        .eliminar:hover {
+            background-color: #aa1015;
+        }
+
+
+        /* CUANDO NO EXISTEN LIBROS */
+
+        .sin-libros {
+            background-color: white;
+
+            padding: 30px;
+
+            border-radius: 8px;
+
+            text-align: center;
+
+            color: #666666;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            background-color: #1c1c1c;
+            color: #aaaaaa;
+
+            text-align: center;
+
+            padding: 20px;
+
+            margin-top: 50px;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 768px) {
+
+            .contenedor {
+                width: 90%;
+            }
+
+            .navbar {
+                width: 90%;
+
+                flex-direction: column;
+
+                padding: 15px 0;
+
+                gap: 15px;
+            }
+
+            .menu {
+                gap: 15px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .libros {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <h1>Biblioteca</h1>
 
-    <h2>Listado de libros</h2>
+    
 
-    <a href="{% url 'crear_libro' %}">Registrar nuevo libro</a>
+    <nav>
 
-    <br><br>
+        <div class="navbar">
 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>ISBN</th>
-                <th>Fecha de publicación</th>
-                <th>Disponible</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
+            <a
+                href="{% url 'lista_libros' %}"
+                class="logo"
+            >
+                <span>▮</span>
+                Biblioteca
+            </a>
 
-        <tbody>
-            {% for libro in libros %}
-            <tr>
-                <td>{{ libro.id }}</td>
-                <td>{{ libro.titulo }}</td>
-                <td>{{ libro.autor }}</td>
-                <td>{{ libro.isbn }}</td>
-                <td>{{ libro.fecha_publicacion }}</td>
-                <td>{{ libro.disponible }}</td>
-                <td>
-                    <a href="{% url 'editar_libro' libro.id %}">Editar</a>
-                </td>
-            </tr>
 
-            {% empty %}
+            <div class="menu">
 
-            <tr>
-                <td colspan="6">No hay libros registrados</td>
-            </tr>
+                <a href="{% url 'lista_libros' %}">
+                    Libros
+                </a>
 
-            {% endfor %}
-        </tbody>
-    </table>
+                <a href="{% url 'crear_libro' %}">
+                    Registrar libro
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    
+
+    <main>
+
+        <div class="contenedor">
+
+
+            <div class="encabezado">
+
+                <h1>📚 Biblioteca</h1>
+
+                <p class="subtitulo">
+                    Catálogo y administración de libros
+                </p>
+
+            </div>
+
+
+
+            
+
+            <div class="acciones">
+
+                <a
+                    href="{% url 'crear_libro' %}"
+                    class="boton"
+                >
+                    ➕ Registrar nuevo libro
+                </a>
+
+            </div>
+
+
+
+            
+
+            <div class="libros">
+
+
+                {% for libro in libros %}
+
+
+                    <div class="libro">
+
+
+                        <h2>
+                            {{ libro.titulo }}
+                        </h2>
+
+
+                        <p>
+                            <strong>Autor:</strong>
+                            {{ libro.autor }}
+                        </p>
+
+
+                        <p>
+                            <strong>ISBN:</strong>
+                            {{ libro.isbn }}
+                        </p>
+
+
+                        <p>
+                            <strong>Fecha de publicación:</strong>
+                            {{ libro.fecha_publicacion|date:"d/m/Y" }}
+                        </p>
+
+
+                        <p>
+
+                            <strong>Estado:</strong>
+
+                            {% if libro.disponible %}
+
+                                <span class="disponible">
+                                    Disponible ✓
+                                </span>
+
+                            {% else %}
+
+                                <span class="no-disponible">
+                                    No disponible
+                                </span>
+
+                            {% endif %}
+
+                        </p>
+
+
+
+                        
+
+                        <div class="botones">
+
+
+                            <a
+                                href="{% url 'editar_libro' libro.id %}"
+                                class="editar"
+                            >
+                                ✏ Editar
+                            </a>
+
+
+                            <a
+                                href="#"
+                            >
+                                🗑 Eliminar
+                            </a>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                {% empty %}
+
+
+                    <div class="sin-libros">
+
+                        No existen libros registrados.
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    
+
+    <footer>
+
+        Sistema de Biblioteca · Proyecto Django
+
+    </footer>
+
 
 </body>
+
 </html>
