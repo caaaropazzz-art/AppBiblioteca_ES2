@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Libro
 
 def lista_libros(request):
@@ -42,3 +42,12 @@ def editar_libro(request, id):
         return redirect('lista_libros')
 
     return render(request, 'libros/editar_libro.html', {'libro': libro})
+
+def eliminar_libro(request, id):
+    libro = get_object_or_404(Libro, id=id)
+    
+    if request.method == 'POST':
+        libro.delete()
+        return redirect('lista_libros')
+        
+    return render(request, 'libros/eliminar_libro.html', {'libro': libro})

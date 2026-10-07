@@ -40,6 +40,8 @@
                 <td>{{ libro.disponible }}</td>
                 <td>
                     <a href="{% url 'editar_libro' libro.id %}">Editar</a>
+                    <a href="{% url 'eliminar_libro' libro.id %}" class="btn btn-danger btn-sm"> Eliminar </a>
+                </a>
                 </td>
             </tr>
 
